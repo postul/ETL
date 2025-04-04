@@ -5,6 +5,9 @@ import time
 import snowflake.connector
 
 # Load NASDAQ 100 tickers 
+# small change to test
+def basic():
+    return
 
 def get_nasdaq_tickers(limit=10):
     
