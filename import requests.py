@@ -1,13 +1,19 @@
 import requests
 import pandas as pd
+import os
+import yaml
 import json
 import time
 import snowflake.connector
+from dotenv import load_dotenv
 
-# Load NASDAQ 100 tickers 
-# small change to test
-def basic():
-    return
+load_dotenv()
+
+def load_cfg(path='config.yaml'):
+    with open(path, 'r') as f:
+        raw_cfg = f.read()
+        interpolated = os.path.expandvars(raw_cfg)
+        return yaml.safe_load(interpolated)
 
 def get_nasdaq_tickers(limit=10):
     
@@ -37,7 +43,6 @@ def get_nasdaq_tickers(limit=10):
     except requests.exceptions.RequestException as e:
         print(f"❌ Error fetching NASDAQ tickers: {e}")
         return[]
-
 
 def fetch_stock_data(tickers, api_key, output_file="nasdaq_stock_data.csv", sleep_time=15):
      """
@@ -92,13 +97,8 @@ def fetch_stock_data(tickers, api_key, output_file="nasdaq_stock_data.csv", slee
 
 tickers = get_nasdaq_tickers(10)
 
-api_key = "TCIWVAV98U2GT0W7"
+cfg = load_cfg()
+api_key = cfg['api_key']
 
 fetch_stock_data(tickers, api_key)
 
-"""
-Daily_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NVDA&outputsize=compact&apikey=TCIWVAV98U2GT0W7'
-r = requests.get(url)
-data = r.json()
-
-print(data)"""
