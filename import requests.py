@@ -102,3 +102,5 @@ api_key = cfg['api_key']
 
 fetch_stock_data(tickers, api_key)
 
+
+

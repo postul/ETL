@@ -1,0 +1,14 @@
+version: "1"
+context:
+  active-host: "cloud.getdbt.com"
+  active-project: "417438"
+projects:
+  - project-name: "ETL"
+    project-id: "417438"
+    account-name: "Tenneco"
+    account-id: "250733"
+    account-host: "cloud.getdbt.com"
+    token-name: "cloud-cli-70ea"
+    token-value: "dbtu_falbaVoLzMVqS4SR-ihvNeB9glvpmnQ9sWok94Xeo4ng7u_ChM"
+
+
